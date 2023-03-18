@@ -17,15 +17,16 @@ icon.addEventListener("click", ()=>{
 
 add.addEventListener("click", ()=>{
 
-    
+     //condition
       if(input.value.length > 0){
         let stgItems = JSON.parse(localStorage.getItem('keeps'))
 
         if(stgItems === null)
         {
-          items = []
+          items = [] //create an array
         }
  
+        //add the value to array
         items.unshift(input.value)
         localStorage.setItem('keeps', JSON.stringify(items))
      
@@ -33,26 +34,35 @@ add.addEventListener("click", ()=>{
  
      show()
       }else{
+        //if user didn't input anything in the box
         alert("ERROR! Please input a value.")
       }
 
 
 })
 
+
+//show created value
 const show = () =>{
 
     const display = document.querySelector(".display")
 
+    //existed
     let stgItems = JSON.parse(localStorage.getItem('keeps'))
+
 
     if(stgItems === null){
         items = []
     }else{
+        //the keeps key value is the array
         items = stgItems
     }
 
+
+    //element container
     let holder = ''
 
+    //array value format
     items.forEach((element, index) => {
         
         let tods = new Date()
@@ -79,19 +89,23 @@ const del = (item) =>{
     let stgItems = JSON.parse(localStorage.getItem('keeps'))
 
 
+    //delete the index
     stgItems.splice(item, 1)
  
- 
+    //set the updated value
     localStorage.setItem('keeps', JSON.stringify(stgItems));
  
-
+    //the value
     show()
 }
 
 show()
 
 const clearAll = () =>{
+    //clear the localstorage
     localStorage.clear()
+    
+    //show the value
     show()
 }
 
